@@ -7,8 +7,16 @@ const app = express();
 
 app.use(express.json());
 app.use(cors());
-app.use('/api/auth', require('./routes/auth'));
-app.use('/api/folders', require('./routes/folder'));
+
+app.use((req, res, next) => {
+  console.log(`Incoming Request: ${req.method} ${req.url}`);
+  next();
+});
+
+app.use("/api/auth", require("./routes/auth"));
+app.use("/api/folders", require("./routes/folder"));
+app.use("/api/files", require("./routes/file"));
+app.use("/uploads", express.static("uploads"));
 
 // Test Route
 app.get("/", (req, res) => {
