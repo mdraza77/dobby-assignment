@@ -9,8 +9,10 @@ function App() {
 
   // Function to clear session (Logout)
   const handleLogout = () => {
-    localStorage.removeItem("token");
-    setToken(null);
+    if (confirm("Are you sure you want to logout?")) {
+      localStorage.removeItem("token");
+      setToken(null);
+    }
   };
 
   if (token) {

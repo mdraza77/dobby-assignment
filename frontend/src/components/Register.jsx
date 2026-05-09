@@ -55,7 +55,7 @@ const Register = ({ toggleAuth }) => {
 
       <button
         type="submit"
-        className="bg-green-600 text-white p-2 w-full font-semibold"
+        className="bg-green-600 text-white p-2 w-full font-semibold hover:bg-green-700 active:bg-green-800 px-3 py-3 rounded cursor-pointer"
       >
         Register
       </button>

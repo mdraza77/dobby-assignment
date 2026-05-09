@@ -11,9 +11,9 @@ const Login = ({ setToken, toggleAuth }) => {
       const res = await API.post("/auth/login", formData);
       localStorage.setItem("token", res.data.token);
       setToken(res.data.token);
-      alert("Login Successful!");
+      console.log("Login Successful!");
     } catch (err) {
-      alert(err.response?.data?.msg || "Login Failed");
+      console.log(err.response?.data?.msg || "Login Failed");
     }
   };
 
@@ -39,7 +39,7 @@ const Login = ({ setToken, toggleAuth }) => {
       />
       <button
         type="submit"
-        className="bg-blue-500 text-white p-2 w-full font-bold"
+        className="bg-blue-500 text-white hover:bg-blue-700 active:bg-blue-800 px-3 py-3 rounded cursor-pointer w-full font-bold"
       >
         Login
       </button>

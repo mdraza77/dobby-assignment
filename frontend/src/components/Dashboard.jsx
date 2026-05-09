@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import API from "../api";
+import { LogOut, Plus, Upload } from "lucide-react";
 
 const Dashboard = ({ onLogout }) => {
   const [folders, setFolders] = useState([]);
@@ -26,7 +27,7 @@ const Dashboard = ({ onLogout }) => {
       console.log("Current Files in Folder:", fileRes.data);
       setFiles(fileRes.data);
 
-      // 3. Fetch Folder Size (Requirement #5)
+      // 3. Fetch Folder Size
       if (currentFolder.id !== "root") {
         const sizeRes = await API.get(`/folders/size/${currentFolder.id}`);
         setTotalSize(sizeRes.data.totalSizeInBytes);
@@ -93,9 +94,9 @@ const Dashboard = ({ onLogout }) => {
         <h1 className="text-xl font-bold text-blue-600">Dobby Drive</h1>
         <button
           onClick={onLogout}
-          className="bg-red-500 text-white px-4 py-2 rounded"
+          className="bg-red-500 hover:bg-red-700 active:bg-red-800 text-white px-3 py-2 rounded cursor-pointer flex items-center gap-2"
         >
-          Logout
+          <LogOut className="w-5 h-5" /> Logout
         </button>
       </nav>
 
@@ -129,15 +130,15 @@ const Dashboard = ({ onLogout }) => {
             />
             <button
               type="submit"
-              className="bg-green-600 text-white px-4 py-2 rounded"
+              className="bg-green-600 hover:bg-green-700 active:bg-green-800 text-white px-3 py-3 rounded cursor-pointer flex items-center gap-2"
             >
-              + Folder
+              <Plus className="w-5 h-5" /> Folder
             </button>
           </form>
 
           <div className="flex gap-4 items-center">
             {currentFolder.id !== "root" && (
-              <span className="text-sm font-bold bg-blue-100 text-blue-800 px-3 py-1 rounded">
+              <span className="font-bold bg-blue-100 text-blue-800 px-3 py-3 rounded">
                 Total Size: {(totalSize / 1024).toFixed(2)} KB
               </span>
             )}
@@ -149,9 +150,10 @@ const Dashboard = ({ onLogout }) => {
             />
             <label
               htmlFor="fileUpload"
-              className="bg-blue-600 text-white px-4 py-2 rounded cursor-pointer"
+              className="bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white px-3 py-3 rounded cursor-pointer flex items-center gap-2"
             >
-              ↑ Upload Image
+              <Upload className="w-5 h-5" />
+              Upload Image
             </label>
           </div>
         </div>
